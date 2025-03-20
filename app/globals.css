@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .drop-shadow-glow {
+    filter: drop-shadow(0 0 0.75rem rgba(0, 255, 200, 0.5));
+  }
+
+  .shadow-neon {
+    box-shadow: 0 0 15px rgba(0, 255, 200, 0.5), 0 0 30px rgba(0, 200, 255, 0.3);
+  }
+
+  .bg-scanline {
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  }
+
+  .glitch-effect {
+    position: relative;
+    display: inline-block;
+  }
+
+  .glitch-effect::before,
+  .glitch-effect::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glitch-effect::before {
+    left: 2px;
+    text-shadow: -1px 0 #00ffcc;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+  }
+
+  .glitch-effect::after {
+    left: -2px;
+    text-shadow: -1px 0 #00ccff;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+  }
+
+  .bg-glitch-noise {
+    background-image: url("data:image/png;base64,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");
+  }
+
+  .bg-glitch-overlay {
+    background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 255, 255, 0.05) 50%, transparent 100%);
+    animation: glitch-overlay 8s infinite linear;
+  }
+
+  .glitch-text {
+    position: relative;
+    display: inline-block;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  .glitch-text:hover::before {
+    left: 2px;
+    text-shadow: -1px 0 #00ffcc;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 0.5s infinite linear alternate-reverse;
+    opacity: 0.8;
+  }
+
+  .glitch-text:hover::after {
+    left: -2px;
+    text-shadow: -1px 0 #00ccff;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 0.5s infinite linear alternate-reverse;
+    opacity: 0.8;
+  }
+
+  .glitch-hover:hover {
+    position: relative;
+    display: inline-block;
+    text-shadow: 0.05em 0 0 rgba(0, 255, 255, 0.75), -0.025em -0.05em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0
+      rgba(0, 0, 255, 0.75);
+    animation: glitch 0.15s infinite;
+  }
+}
+
+@keyframes glitch-overlay {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
